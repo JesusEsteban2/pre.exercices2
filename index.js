@@ -110,7 +110,33 @@ console.dir(yearOfBorn(1984));
 
 // 8-Crea una función que reciba la edad de una persona por parámetros y verifique si es mayor de edad. Imprime por consola un string con el resultado.
 
+function isAdult(age = 0) {
+  return age >= 18;
+}
+console.dir('Ejercicio 8');
+console.dir(isAdult(17));
+console.dir(isAdult(18));
+
 // 9-Crea una función que simule el lanzamiento de un dado e imprime por consola el resultado cada vez que se ejecuta.
+
+function rollDice(diceFaces = 0) {
+  const dice = Math.trunc(Math.random() * diceFaces + 1);
+  console.dir(dice);
+  return dice;
+}
+
+function checkRollDice() {
+  const result = [0, 0, 0, 0, 0, 0, 0];
+  for (i = 0; i < 10000; i++) {
+    const dice = rollDice(6);
+    result[dice]++;
+  }
+  return result;
+}
+
+rollDice(6);
+rollDice(10);
+console.table(checkRollDice());
 
 // 10-Crea una función que reciba un año por parámetros y compruebe e imprima por consola si el año es bisiesto o no.
 
