@@ -9,13 +9,44 @@ console.dir('Ejercicio 1');
 console.dir(stringWithoutFirstLast('PatatA'));
 
 // 2-Escribe una función que reciba una palabra y revise si es un palíndromo.
+function removeAccents(value = '') {
+  const invalid = 'áéíóúü';
+  let result = '';
+  for (let i = 0; i < value.length; i++) {
+    if (invalid.includes(value[i])) {
+      switch (value[i]) {
+        case 'á':
+          result = result + 'a';
+          break;
+        case 'é':
+          result = result + 'e';
+          break;
+        case 'í':
+          result = result + 'i';
+          break;
+        case 'ó':
+          result = result + 'o';
+          break;
+        case 'ú':
+        case 'ü':
+          result = result + 'u';
+          break;
+      }
+    } else {
+      result = result + value[i];
+    }
+  }
+  return result;
+}
+
+console.dir(removeAccents('áéíóúü'));
+console.dir(removeAccents('Métrica'));
 
 function isPalindrome(stringVal = '') {
-  const stringWhithoutSpaces = stringVal
-    .toLocaleLowerCase()
-    .normalize('NFD')
-    .trim();
-  let posEnd = stringVal.length;
+  const stringWhithoutSpaces = removeAccents(
+    stringVal.toLocaleLowerCase()
+  ).replaceAll(' ', '');
+  let posEnd = stringWhithoutSpaces.length;
   for (let i = 0; i < Math.trunc(stringWhithoutSpaces.length / 2); i++) {
     posEnd--;
     if (stringWhithoutSpaces[i].includes(stringWhithoutSpaces[posEnd])) {
@@ -28,8 +59,8 @@ function isPalindrome(stringVal = '') {
 }
 
 console.dir('Ejercicio 2');
-console.dir(isPalindrome('aná'));
-console.dir(isPalindrome('ratar'));
+console.dir(isPalindrome('Dábale arroz a la zorra el abad'));
+console.dir(isPalindrome('atar a la rata'));
 console.dir(isPalindrome('esto no'));
 
 // 3-Crea una función que cuente las vocales que contiene una palabra dada por parámetros.
@@ -50,8 +81,10 @@ console.log(counterVowels('aeiouáéíóúü'));
 // 4-Crea una función que verifique si una cadena de texto recibida por parámetros es un pangrama (contiene todas las letras del abecedario).
 
 function isPangram(stringVal = '') {
-  const stringNormalice = stringVal.toLocaleLowerCase().normalize('NFD').trim();
-  const alphabet = 'abcdefghijklmnopqrstuvxyz';
+  const stringNormalice = removeAccents(
+    stringVal.toLocaleLowerCase()
+  ).replaceAll(' ', '');
+  const alphabet = 'abcdefghijklmnñopqrstuvxyz';
 
   for (let i = 0; i < alphabet.length; i++) {
     if (stringNormalice.includes(alphabet[i])) {
@@ -64,14 +97,14 @@ function isPangram(stringVal = '') {
 }
 
 console.dir('Ejercicio 4');
-console.dir(isPangram('abcdefghijklmnopqrstuvxyz'));
+console.dir(isPangram('abcdefghijklmnñopqrstuvxyz'));
 console.dir(isPangram('esto no'));
 
 // 5-Escribe una función que compruebe si una cadena de texto contiene todas las vocales.
 
 function hasAllVowels(stringVal = '') {
   const vowels = 'aeiou';
-  const stringNormalice = stringVal.toLocaleLowerCase().normalize('NFD');
+  const stringNormalice = removeAccents(stringVal.toLocaleLowerCase());
 
   for (let i = 0; i < vowels.length; i++) {
     if (stringNormalice.includes(vowels[i])) {
@@ -96,13 +129,13 @@ function countDown(num = 0) {
 }
 
 console.dir('Ejercicio 6');
-console.dir(countDown(10));
+console.dir(countDown(5));
 
 // 7-Escribe una función que reciba por parámetros el año de nacimiento, y calcule la edad de la persona.
 
 function yearOfBorn(yearBorn = 0) {
-  let yearToday = new Date().getFullYear();
-  return yearToday - yearBorn;
+  let actualYear = new Date().getFullYear();
+  return actualYear - yearBorn;
 }
 
 console.dir('Ejercicio 7');
@@ -121,7 +154,7 @@ console.dir(isAdult(18));
 
 function rollDice(diceFaces = 0) {
   const dice = Math.trunc(Math.random() * diceFaces + 1);
-  console.dir(dice);
+  // console.dir(dice);
   return dice;
 }
 
@@ -135,8 +168,7 @@ function checkRollDice() {
 }
 
 console.dir('Ejercicio 9');
-rollDice(6);
-rollDice(10);
+console.dir(rollDice(10));
 console.table(checkRollDice());
 
 // 10-Crea una función que reciba un año por parámetros y compruebe e imprima por consola si el año es bisiesto o no.
@@ -196,6 +228,8 @@ function rockPaperScissors(userOption = 'Piedra') {
 console.dir('Ejercicio 11');
 rockPaperScissors('Piedra');
 
+Math.round(47.8888888)
+
 // 12-La serie de Fibonacci es un problema matemático que realiza la suma de los dos números anteriores para generar el siguiente. Crea una función que imprima por consola la serie de Fibonacci hasta un número introducido por el usuario. El usuario debe ser preguntado por este número al iniciar la aplicación.
 
 console.dir('Ejercicio 12');
@@ -211,6 +245,8 @@ console.dir('Ejercicio 14');
 // 15-Escribe una función que calcule el descuento aplicado a un precio. La función recibirá el precio y el descuento del artículo en venta, con ellos deberá calcular e imprimir por consola el precio, el descuento y el total del precio una vez aplicado el descuento. Redondea a dos decimales.
 
 console.dir('Ejercicio 15');
+
+// 16- crear función que sume los nº de un array.
 
 // Prueba de String.normalize()
 
