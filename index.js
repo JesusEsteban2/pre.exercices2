@@ -228,25 +228,83 @@ function rockPaperScissors(userOption = 'Piedra') {
 console.dir('Ejercicio 11');
 rockPaperScissors('Piedra');
 
-Math.round(47.8888888)
+Math.round(47.8888888);
 
 // 12-La serie de Fibonacci es un problema matemático que realiza la suma de los dos números anteriores para generar el siguiente. Crea una función que imprima por consola la serie de Fibonacci hasta un número introducido por el usuario. El usuario debe ser preguntado por este número al iniciar la aplicación.
 
+function fibonacciSeries(untilNumber) {
+  let fibonacciLastNumber = 0;
+  let fibonacciActualNumber = 1;
+  console.dir(fibonacciLastNumber);
+
+  while (fibonacciActualNumber <= untilNumber) {
+    console.dir(fibonacciActualNumber);
+    const newNumber = fibonacciLastNumber + fibonacciActualNumber;
+    fibonacciLastNumber = fibonacciActualNumber;
+    fibonacciActualNumber = newNumber;
+  }
+}
+
 console.dir('Ejercicio 12');
+fibonacciSeries(55);
 
 // 13-Escribe una función generadora de nombres de usuario aleatorios, a partir de dos grupos de palabras dadas. Estos grupos de palabras pueden estar agrupados en arrays. (nombres=['Hugo', 'Luis'], apellidos=['Duro', 'Fabiano']). Retorna un nombre de usuario aleatorio con nombre, apellido y un número aleatorio del 1 al 100. (Por ejemplo -> 'Pepe Pérez 87'.)
 
+function nameGeneration() {
+  const names = ['Pedro', 'Luis', 'Pepe', 'Andres', 'Marcos', 'Juan'];
+  const surNames = ['Duro', 'Fabiano', 'Perez', 'Martinez', 'Gomez', 'Ruiz'];
+  const returnName =
+    names[rollDice(6) - 1] +
+    ' ' +
+    surNames[rollDice(6) - 1] +
+    ' ' +
+    rollDice(100);
+  return returnName;
+}
+
 console.dir('Ejercicio 13');
+console.dir(nameGeneration());
 
 // 14-Crea una función calculadora de propinas. Debe recibir el total de la cuenta y el porcentaje de propina deseado, con ello deberá calcular e imprimir por consola la cuenta, la propina que corresponde a la cuenta introducida, y el total a pagar. Redondea a dos decimales.
 
+function tipCalculator(account, tip) {
+  const amountTip = Math.round(account * tip) / 100;
+  const totalAmount = account + amountTip;
+
+  console.dir(
+    `El importe de la cuenta es ${account}€, el ${tip}% de propina es: ${amountTip}€. El total a pagar es ${totalAmount}€`
+  );
+}
+
 console.dir('Ejercicio 14');
+console.dir(tipCalculator(127, 12));
 
 // 15-Escribe una función que calcule el descuento aplicado a un precio. La función recibirá el precio y el descuento del artículo en venta, con ellos deberá calcular e imprimir por consola el precio, el descuento y el total del precio una vez aplicado el descuento. Redondea a dos decimales.
 
-console.dir('Ejercicio 15');
+function discountCalculator(amount, discount) {
+  const amountDiscount = Math.round(amount * discount) / 100;
+  const totalAmount = amount - amountDiscount;
 
-// 16- crear función que sume los nº de un array.
+  console.dir(
+    `El precio del producto es ${amount}€, el ${discount}% de descuento es: ${amountDiscount}€. El total a pagar es ${totalAmount}€`
+  );
+}
+console.dir('Ejercicio 15');
+discountCalculator(127, 12);
+
+// 16 - Solución del profesor.
+
+function sumaNumbers() {
+  let accumulator = 0;
+  for (let i = 0; i < arguments.length; i++) {
+    accumulator += arguments[i];
+  }
+  return accumulator;
+}
+
+// totalArray([1,3,4,5,6,7])
+console.dir('Ejercicio 16');
+console.log(sumaNumbers(1, 4, 5, 6, 7, 8));
 
 // Prueba de String.normalize()
 
